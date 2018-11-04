@@ -151,6 +151,10 @@ int main(int argc, char* argv[]) {
     while (v8::platform::PumpMessageLoop(platform.get(), isolate)) continue;
 	quit_watchdog = true;
     watchdog.join();
+    if (!wordlist.empty()) {
+      fprintf(stderr, "Did not output all words in list.\n");
+      return 1;
+    }
     fprintf(stderr, "Verified.\n");
   }
   isolate->Dispose();
