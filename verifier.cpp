@@ -126,7 +126,7 @@ int main(int argc, char* argv[]) {
       return 1;
     }
 	v8::Local<v8::String> preamble =
-        v8::String::NewFromUtf8(isolate, "console.log = print;", v8::NewStringType::kNormal)
+        v8::String::NewFromUtf8(isolate, "console.log = print; delete print;", v8::NewStringType::kNormal)
             .ToLocalChecked();
     std::thread watchdog([](){
         auto then = std::chrono::steady_clock::now();
