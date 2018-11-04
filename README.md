@@ -4,6 +4,8 @@ Usage:
 ./verifier <wordlist> <program.js> [v8 options]
 ```
 
+If you would like a verifier that doesn't require building v8 from source, try [gh-verifier-lite](https://github.com/ixchow/gh-verifier-lite) -- it's not as effectively sandboxed, but if you're not actively trying to cheat you probably won't notice.
+
 This verifier code builds against the v8 monolithic library, which you can create more or less like this (assuming you have the v8 source in $HOME/v8/v8 and depot_tools in $HOME/depot_tools):
 
 ```
