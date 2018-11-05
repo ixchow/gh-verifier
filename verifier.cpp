@@ -74,6 +74,9 @@ int main(int argc, char* argv[]) {
   std::unique_ptr<v8::Platform> platform = v8::platform::NewDefaultPlatform();
   v8::V8::InitializePlatform(platform.get());
   v8::V8::Initialize();
+  //As far as I can tell, this is how one sets FLAG_stack_size:
+  std::string flag = "--stack-size=10240";
+  v8::V8::SetFlagsFromString(flag.c_str(), flag.size());
   v8::V8::SetFlagsFromCommandLine(&argc, argv, true);
   v8::Isolate::CreateParams create_params;
   create_params.array_buffer_allocator =
@@ -81,7 +84,6 @@ int main(int argc, char* argv[]) {
   create_params.constraints.set_max_old_space_size(2048); //<-- heap limit of 2 gigabytes
 
   v8::Isolate* isolate = v8::Isolate::New(create_params);
-  isolate->SetStackLimit(100000); //<-- big stack because I don't want to have parse problems
 
   if (argc != 3) {
     std::cerr << "Usage:\n./verifier <wordlist> <program.js> [v8 options]" << std::endl;
