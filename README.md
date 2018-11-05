@@ -1,4 +1,4 @@
-This is the verifier code used by the backend for [https://golf.horse](https://golf.horse).
+This is the verifier code used by the backend for [http://golf.horse](http://golf.horse).
 ```
 Usage:
 ./verifier <wordlist> <program.js> [v8 options]
@@ -9,6 +9,11 @@ If you would like a verifier that doesn't require building v8 from source, try [
 This verifier code builds against the v8 monolithic library, which you can create more or less like this (assuming you have the v8 source in $HOME/v8/v8 and depot_tools in $HOME/depot_tools):
 
 ```
+#if you don't have depot_tools yet:
+# git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+# export PATH=$PATH:/path/to/depot_tools
+# ... more here from the docs that I haven't gotten to yet
+
 export PATH=$PATH:$HOME/depot_tools
 cd v8/v8
 
@@ -28,3 +33,4 @@ ninja -C out/x64.release v8_monolith
 ```
 
 Now you should have an ```out/x64.release/obj/libv8_monolith.a```; update the Makefile to point ```V8DIR``` to the right spot and you should be good to build.
+
