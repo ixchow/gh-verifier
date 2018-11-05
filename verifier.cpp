@@ -81,6 +81,7 @@ int main(int argc, char* argv[]) {
   create_params.constraints.set_max_old_space_size(2048); //<-- heap limit of 2 gigabytes
 
   v8::Isolate* isolate = v8::Isolate::New(create_params);
+  isolate->SetStackLimit(100000); //<-- big stack because I don't want to have parse problems
 
   if (argc != 3) {
     std::cerr << "Usage:\n./verifier <wordlist> <program.js> [v8 options]" << std::endl;
